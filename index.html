@@ -55,10 +55,16 @@
     transition: opacity .2s, border-color .2s;
   }
   .nav-links a:hover{opacity:1; border-color:var(--amber);}
+  .nav-actions{display:flex; gap:12px; align-items:center;}
   .nav-call{
     background:var(--amber); color:var(--ink); font-weight:700;
     padding:10px 18px; border-radius:2px; font-size:0.85rem;
   }
+  .nav-auth{
+    background:transparent; border:1px solid var(--line); color:var(--paper);
+    padding:9px 16px; border-radius:2px; font-size:0.85rem; transition:all .2s;
+  }
+  .nav-auth:hover{border-color:var(--amber); color:var(--amber);}
   @media (min-width:861px){ .nav-links{order:0; width:auto;} }
 
   /* ---------- Hero ---------- */
@@ -89,39 +95,21 @@
   .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:20px; flex-wrap:wrap;}
   .section-head h2{font-size:clamp(1.8rem,3.2vw,2.4rem);}
   .section-head p{max-width:38ch; color:rgba(245,242,234,0.6); font-size:0.95rem;}
-  
-  .filter-bar{ display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin:34px 0 40px; }
-  .cat-tabs, .trans-tabs{display:flex; gap:10px; flex-wrap:wrap;}
+  .cat-tabs{display:flex; gap:10px; margin:34px 0 40px; flex-wrap:wrap;}
   .cat-tab{
     background:var(--graphite); color:rgba(245,242,234,0.7);
     padding:9px 18px; border-radius:20px; font-size:0.85rem;
     border:1px solid var(--line); transition:all .2s;
   }
   .cat-tab.active{background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:700;}
-  .filter-divider{ width:1px; height:24px; background:var(--line); }
-
   .fleet-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; padding-bottom:60px;}
   .car-card{
     background:var(--graphite); border:1px solid var(--line); border-radius:6px;
     overflow:hidden; display:flex; flex-direction:column;
   }
-  .car-visual{
-    aspect-ratio:16/10; background:var(--graphite-2);
-    overflow: hidden; position:relative; cursor:pointer;
-  }
-  .car-visual img{
-    width:100%; height:100%; object-fit:cover;
-    transition: transform 0.3s ease;
-  }
-  .car-card:hover .car-visual img{
-    transform: scale(1.04);
-  }
-  .photo-badge{
-    position:absolute; bottom:10px; right:10px;
-    background:rgba(18,19,22,0.75); color:var(--paper);
-    font-size:0.72rem; padding:4px 8px; border-radius:4px;
-    backdrop-filter:blur(4px); pointer-events:none; border:1px solid var(--line);
-  }
+  .car-visual{ aspect-ratio:16/10; background:var(--graphite-2); overflow: hidden;}
+  .car-visual img{ width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease;}
+  .car-card:hover .car-visual img{ transform: scale(1.04);}
   .car-body{padding:20px 22px 22px;}
   .car-cat{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--amber); margin-bottom:6px;}
   .car-name{ font-family:'Unbounded',sans-serif; font-size:1.15rem; margin-bottom:12px;}
@@ -152,7 +140,7 @@
   .review-quote{font-size:0.92rem; color:rgba(245,242,234,0.75); margin-bottom:14px;}
   .review-name{font-size:0.8rem; color:rgba(245,242,234,0.45);}
 
-  /* ---------- Support (light) ---------- */
+  /* ---------- Support ---------- */
   .support{ background:var(--paper); color:var(--ink); padding:64px 0 26px;}
   .support-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; padding-bottom:36px; border-bottom:1px solid rgba(18,19,22,0.1);}
   .support-col h4{ font-size:0.95rem; margin-bottom:14px; color:var(--amber-deep); font-family:'Unbounded',sans-serif;}
@@ -160,61 +148,53 @@
   .support-col a:hover{color:var(--amber-deep);}
   .foot-bottom{ display:flex; justify-content:space-between; padding-top:20px; font-size:0.78rem; color:#8b8574; flex-wrap:wrap; gap:10px;}
 
-  /* ---------- Overlay / modal ---------- */
-  .overlay{ position:fixed; inset:0; background:rgba(18,19,22,0.65); z-index:80; opacity:0; pointer-events:none; transition:opacity .2s;}
+  /* ---------- Modals ---------- */
+  .overlay{ position:fixed; inset:0; background:rgba(18,19,22,0.75); z-index:80; opacity:0; pointer-events:none; transition:opacity .2s;}
   .overlay.show{opacity:1; pointer-events:auto;}
   .modal{ position:fixed; inset:0; z-index:90; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity .2s;}
   .modal.show{opacity:1; pointer-events:auto;}
   .modal-box{
     background:var(--graphite); border:1px solid var(--line); border-radius:6px;
-    padding:32px; width:100%; max-width:460px; position:relative; max-height:88vh; overflow-y:auto;
+    padding:32px; width:100%; max-width:440px; position:relative; max-height:88vh; overflow-y:auto;
   }
   .modal-close{position:absolute; top:18px; right:18px; background:none; font-size:1.3rem; color:var(--paper);}
   .modal-box h3{font-size:1.2rem; margin-bottom:6px;}
   .modal-sub{font-size:0.85rem; color:rgba(245,242,234,0.55); margin-bottom:22px;}
   .field{margin-bottom:16px;}
   .field label{display:block; font-size:0.82rem; margin-bottom:6px; color:rgba(245,242,234,0.6);}
-  .field input[type="text"], .field input[type="tel"], .field input[type="date"]{
+  .field input{
     width:100%; padding:11px 12px; border:1px solid rgba(245,242,234,0.2);
     border-radius:3px; font-size:0.92rem; font-family:inherit; background:var(--graphite-2); color:var(--paper);
   }
   .field input:focus{outline:2px solid var(--amber); outline-offset:1px;}
   .field-row{display:flex; gap:12px;}
   .field-row .field{flex:1;}
-  
-  /* Additional Options */
-  .options-title{ font-size:0.85rem; color:rgba(245,242,234,0.8); margin-bottom:10px; font-weight:700;}
-  .option-item{
-    display:flex; align-items:center; justify-content:space-between;
-    background:var(--graphite-2); padding:10px 12px; border-radius:4px;
-    margin-bottom:8px; border:1px solid var(--line); font-size:0.85rem; cursor:pointer;
-  }
-  .option-item input{ accent-color: var(--amber); margin-right:10px; cursor:pointer;}
-  .option-label{ display:flex; align-items:center;}
-  .option-price{ color:var(--amber); font-size:0.8rem;}
-
   .form-error{color:#e07a5f; font-size:0.82rem; margin-bottom:12px; display:none;}
   .form-error.show{display:block;}
   .total-box{
-    background:var(--graphite-2); border-radius:4px; padding:14px 16px; margin:18px 0;
+    background:var(--graphite-2); border-radius:4px; padding:14px 16px; margin-bottom:18px;
     display:flex; justify-content:space-between; align-items:center; font-family:'Unbounded',sans-serif; font-size:1.05rem;
   }
   .total-box span:last-child{color:var(--amber);}
 
-  /* Gallery Modal */
-  .gallery-modal .modal-box{ max-width:700px; padding:20px; }
-  .gallery-stage{ position:relative; aspect-ratio:16/10; background:#000; border-radius:4px; overflow:hidden; }
-  .gallery-stage img{ width:100%; height:100%; object-fit:cover; }
-  .gallery-btn{
-    position:absolute; top:50%; transform:translateY(-50%); background:rgba(18,19,22,0.7);
-    color:var(--paper); padding:12px 16px; font-size:1.2rem; border-radius:4px; border:1px solid var(--line); transition:background .2s;
+  /* Auth UI Styles */
+  .btn-google{
+    width:100%; background:#fff; color:#333; font-weight:600; padding:12px;
+    border-radius:3px; font-size:0.9rem; display:flex; align-items:center; justify-content:center;
+    gap:10px; margin-bottom:16px; transition:background .2s;
   }
-  .gallery-btn:hover{ background:var(--amber); color:var(--ink); }
-  .gallery-prev{ left:10px; }
-  .gallery-next{ right:10px; }
-  .gallery-counter{ text-align:center; margin-top:12px; font-size:0.85rem; color:rgba(245,242,234,0.6); }
+  .btn-google:hover{background:#f1f1f1;}
+  .auth-divider{
+    text-align:center; position:relative; margin:18px 0; font-size:0.8rem; color:rgba(245,242,234,0.4);
+  }
+  .auth-divider::before, .auth-divider::after{
+    content:''; position:absolute; top:50%; width:40%; height:1px; background:var(--line);
+  }
+  .auth-divider::before{left:0;} .auth-divider::after{right:0;}
+  .sms-step{display:none;}
+  .sms-step.active{display:block;}
 
-  /* ---------- Responsive ---------- */
+  /* Responsive */
   @media (max-width: 860px){
     .hero{padding:150px 0 70px;}
     .hero-grid{grid-template-columns:1fr; gap:40px;}
@@ -224,7 +204,6 @@
     .review-grid{grid-template-columns:1fr;}
     .support-grid{grid-template-columns:1fr; gap:24px;}
     .field-row{flex-direction:column; gap:0;}
-    .filter-divider{ display:none; }
   }
 </style>
 </head>
@@ -238,7 +217,10 @@
       <li><a href="#conditions">Условия</a></li>
       <li><a href="#reviews">Отзывы</a></li>
     </ul>
-    <a href="https://wa.me/996700000000" class="nav-call">WhatsApp</a>
+    <div class="nav-actions">
+      <button class="nav-auth" id="openAuthBtn">Войти</button>
+      <a href="https://wa.me/996775049798" class="nav-call">WhatsApp</a>
+    </div>
   </nav>
 </header>
 
@@ -247,8 +229,7 @@
     <div>
       <p class="hero-eyebrow">Прокат авто · без залога наличными</p>
       <h1>Своя дорога.<br>Любая машина.</h1>
-      <p class="lede">От городского седана до внедорожника для гор — бронируете
-        онлайн, забираете ключи за 10 минут в аэропорту или в центре.</p>
+      <p class="lede">От городского седана до внедорожника для гор — бронируете онлайн, забираете ключи за 10 минут в аэропорту или в центре.</p>
       <div class="hero-actions">
         <a href="#fleet" class="btn-primary">Выбрать машину</a>
         <a href="#conditions" class="btn-ghost">Условия аренды</a>
@@ -283,13 +264,7 @@
       <h2>Автопарк</h2>
       <p>Все машины на ходу, с полной страховкой и полным баком при выдаче.</p>
     </div>
-    
-    <div class="filter-bar">
-      <div class="cat-tabs" id="catTabs"></div>
-      <div class="filter-divider"></div>
-      <div class="trans-tabs" id="transTabs"></div>
-    </div>
-
+    <div class="cat-tabs" id="catTabs"></div>
     <div class="fleet-grid" id="fleetGrid"></div>
   </div>
 </section>
@@ -330,20 +305,17 @@
     <div class="review-grid">
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-quote">Забронировал за 5 минут с телефона, машину дали
-          чистую и с полным баком. Без сюрпризов на выдаче.</p>
+        <p class="review-quote">Забронировал за 5 минут с телефона, машину дали чистую и с полным баком. Без сюрпризов на выдаче.</p>
         <p class="review-name">Тимур</p>
       </div>
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-quote">Брали внедорожник на поездку в горы — прошли
-          сложный участок без проблем. Возьмём ещё раз.</p>
+        <p class="review-quote">Брали внедорожник на поездку в горы — прошли сложный участок без проблем. Возьмём ещё раз.</p>
         <p class="review-name">Айгуль</p>
       </div>
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <p class="review-quote">Понравилось, что сразу видно итоговую цену за
-          все дни — никаких доплат при получении.</p>
+        <p class="review-quote">Понравилось, что сразу видно итоговую цену за все дни — никаких доплат при получении.</p>
         <p class="review-name">Марат</p>
       </div>
     </div>
@@ -356,8 +328,8 @@
       <div class="support-col">
         <h4>Бронирование</h4>
         <p>Вопросы по машинам</p>
-        <a href="tel:+996700000000">+996 700 00 00 00</a>
-        <a href="https://wa.me/996700000000">Написать в WhatsApp</a>
+        <a href="tel:+996775049798">+996 775 04 97 98</a>
+        <a href="https://wa.me/996775049798">Написать в WhatsApp</a>
       </div>
       <div class="support-col">
         <h4>Выдача машин</h4>
@@ -403,24 +375,8 @@
     </div>
     <div class="field">
       <label for="clientPhone">Телефон</label>
-      <input type="tel" id="clientPhone" placeholder="996700123456">
+      <input type="tel" id="clientPhone" placeholder="+996775049798">
     </div>
-
-    <!-- Additional Options -->
-    <div class="options-title">Дополнительные опции:</div>
-    <label class="option-item">
-      <span class="option-label"><input type="checkbox" id="optChildSeat" data-price="500"> Детское автокресло</span>
-      <span class="option-price">+500 ₽</span>
-    </label>
-    <label class="option-item">
-      <span class="option-label"><input type="checkbox" id="optSecondDriver" data-price="1000"> Второй водитель</span>
-      <span class="option-price">+1 000 ₽</span>
-    </label>
-    <label class="option-item">
-      <span class="option-label"><input type="checkbox" id="optAirport" data-price="1500"> Доставка в аэропорт</span>
-      <span class="option-price">+1 500 ₽</span>
-    </label>
-
     <div class="total-box">
       <span id="totalDays">0 дней</span>
       <span id="totalSum">0 ₽</span>
@@ -430,28 +386,48 @@
   </div>
 </div>
 
-<!-- Modal Gallery -->
-<div class="modal gallery-modal" id="galleryModal">
+<!-- Modal Auth -->
+<div class="modal" id="authModal">
   <div class="modal-box">
-    <button class="modal-close" id="galleryCloseBtn">×</button>
-    <h3 id="galleryTitle" style="margin-bottom:14px; font-size:1.1rem;"></h3>
-    <div class="gallery-stage">
-      <img id="galleryImg" src="" alt="Автомобиль">
-      <button class="gallery-btn gallery-prev" id="galleryPrev">‹</button>
-      <button class="gallery-btn gallery-next" id="galleryNext">›</button>
+    <button class="modal-close" id="authCloseBtn">×</button>
+    <h3>Вход в аккаунт</h3>
+    <p class="modal-sub">Войдите для сохранения истории бронирований</p>
+    
+    <button class="btn-google" id="googleAuthBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+      Войти через Google
+    </button>
+
+    <div class="auth-divider">или по номеру</div>
+
+    <div id="smsStep1" class="sms-step active">
+      <div class="field">
+        <label for="authPhone">Номер телефона</label>
+        <input type="tel" id="authPhone" placeholder="+996 775 049 798">
+      </div>
+      <button class="btn-primary" id="sendCodeBtn" style="width:100%;">Получить SMS-код</button>
     </div>
-    <div class="gallery-counter" id="galleryCounter">1 / 3</div>
+
+    <div id="smsStep2" class="sms-step">
+      <div class="field">
+        <label for="smsCode">SMS-код подлинности</label>
+        <input type="text" id="smsCode" placeholder="Код из SMS (например: 4821)" maxlength="6">
+      </div>
+      <button class="btn-primary" id="verifyCodeBtn" style="width:100%;">Подтвердить код</button>
+    </div>
+
+    <p class="form-error" id="authError" style="margin-top:12px;"></p>
   </div>
 </div>
 
 <script>
 (function(){
-  var OWNER_WHATSAPP = '996700000000'; // замените на реальный номер клиента
+  var OWNER_WHATSAPP = '996775049798'; // Настоящий номер для заявок
 
-    var CARS = [
+  var CARS = [
     {id:'e1', cat:'Эконом', name:'Kia Rio', trans:'Механика', fuel:'6.5 л/100км', seats:'5 мест', price:1800, img:'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80'},
     {id:'e2', cat:'Эконом', name:'Hyundai Solaris', trans:'Автомат', fuel:'6.8 л/100км', seats:'5 мест', price:2000, img:'https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=600&q=80'},
-    {id:'e3', cat:'Эконом', name:'Renault Logan', trans:'Механика', fuel:'6.2 л/100км', seats:'5 мест', price:1700, img:'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80'},
+        {id:'e3', cat:'Эконом', name:'Renault Logan', trans:'Механика', fuel:'6.2 л/100км', seats:'5 мест', price:1700, img:'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80'},
     {id:'c1', cat:'Комфорт', name:'Toyota Camry', trans:'Автомат', fuel:'8.5 л/100км', seats:'5 мест', price:3500, img:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=600&q=80'},
     {id:'c2', cat:'Комфорт', name:'Skoda Octavia', trans:'Автомат', fuel:'7.2 л/100км', seats:'5 мест', price:3000, img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80'},
     {id:'c3', cat:'Комфорт', name:'Kia K5', trans:'Автомат', fuel:'7.8 л/100км', seats:'5 мест', price:3300, img:'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80'},
@@ -510,7 +486,9 @@
 
   var overlay = document.getElementById('overlay');
   var modal = document.getElementById('bookingModal');
+  var authModal = document.getElementById('authModal');
   var currentCar = null;
+  var generatedCode = null;
 
   function openBooking(id){
     currentCar = CARS.find(function(c){return c.id===id;});
@@ -518,6 +496,11 @@
     document.getElementById('modalCarName').textContent = currentCar.name;
     document.getElementById('modalCarSpecs').textContent =
       currentCar.trans+' · '+currentCar.fuel+' · '+currentCar.seats+' · '+currentCar.price.toLocaleString('ru-RU')+' ₽/сутки';
+    
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById('dateFrom').min = today;
+    document.getElementById('dateTo').min = today;
+
     document.getElementById('dateFrom').value = '';
     document.getElementById('dateTo').value = '';
     document.getElementById('clientName').value = '';
@@ -527,12 +510,16 @@
     modal.classList.add('show');
     overlay.classList.add('show');
   }
-  function closeBooking(){
+
+  function closeAllModals(){
     modal.classList.remove('show');
+    authModal.classList.remove('show');
     overlay.classList.remove('show');
   }
-  document.getElementById('modalCloseBtn').addEventListener('click', closeBooking);
-  overlay.addEventListener('click', closeBooking);
+
+  document.getElementById('modalCloseBtn').addEventListener('click', closeAllModals);
+  document.getElementById('authCloseBtn').addEventListener('click', closeAllModals);
+  overlay.addEventListener('click', closeAllModals);
 
   function daysBetween(from, to){
     var d1 = new Date(from), d2 = new Date(to);
@@ -572,7 +559,50 @@
     ];
     var text = encodeURIComponent(lines.join('\n'));
     window.open('https://wa.me/' + OWNER_WHATSAPP + '?text=' + text, '_blank');
-    closeBooking();
+    closeAllModals();
+  });
+
+  /* Авторизация */
+  document.getElementById('openAuthBtn').addEventListener('click', function(){
+    document.getElementById('smsStep1').classList.add('active');
+    document.getElementById('smsStep2').classList.remove('active');
+    document.getElementById('authError').classList.remove('show');
+    authModal.classList.add('show');
+    overlay.classList.add('show');
+  });
+
+  document.getElementById('googleAuthBtn').addEventListener('click', function(){
+    alert('Имитация входа через Google-аккаунт. Успешный вход!');
+    document.getElementById('openAuthBtn').textContent = 'Профиль';
+    closeAllModals();
+  });
+
+  document.getElementById('sendCodeBtn').addEventListener('click', function(){
+    var phone = document.getElementById('authPhone').value.trim();
+    var err = document.getElementById('authError');
+    if(!phone || phone.length < 8){
+      err.textContent = 'Введите корректный номер телефона';
+      err.classList.add('show');
+      return;
+    }
+    generatedCode = Math.floor(1000 + Math.random() * 9000);
+    alert('SMS-код проверки: ' + generatedCode);
+    err.classList.remove('show');
+    document.getElementById('smsStep1').classList.remove('active');
+    document.getElementById('smsStep2').classList.add('active');
+  });
+
+  document.getElementById('verifyCodeBtn').addEventListener('click', function(){
+    var code = document.getElementById('smsCode').value.trim();
+    var err = document.getElementById('authError');
+    if(code === String(generatedCode)){
+      alert('Номер подтвержден! Вы успешно вошли.');
+      document.getElementById('openAuthBtn').textContent = 'Профиль';
+      closeAllModals();
+    } else {
+      err.textContent = 'Неверный SMS-код!';
+      err.classList.add('show');
+    }
   });
 
   renderTabs();
